@@ -1,0 +1,566 @@
+{
+  "id": "a1000000-0000-4000-8000-000000000001",
+  "version": "2.0",
+  "name": "InternHub_STQA_Project",
+  "url": "https://intern-hub-blue.vercel.app",
+  "tests": [
+    {
+      "id": "c0000001-0000-4000-8000-000000000001",
+      "name": "TC01_Admin_Login",
+      "commands": [
+        {
+          "id": "1001-01",
+          "comment": "Open InternHub landing page with signin modal triggered",
+          "command": "open",
+          "target": "/?signin=true",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1001-02",
+          "comment": "Wait for Sign In modal dialog to appear",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1001-03",
+          "comment": "Click Continue with Email",
+          "command": "click",
+          "target": "xpath=//button[contains(.,'Continue with Email')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1001-04",
+          "comment": "Wait for Email input",
+          "command": "waitForElementPresent",
+          "target": "xpath=//input[@type='email']",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "1001-05",
+          "comment": "Enter admin email (replace with your live admin email if different)",
+          "command": "type",
+          "target": "xpath=//input[@type='email']",
+          "targets": [],
+          "value": "admin@coreco.com"
+        },
+        {
+          "id": "1001-06",
+          "comment": "Enter admin password (replace with your live admin password if different)",
+          "command": "type",
+          "target": "xpath=//input[@type='password']",
+          "targets": [],
+          "value": "admin123"
+        },
+        {
+          "id": "1001-07",
+          "comment": "Click Sign in button",
+          "command": "click",
+          "target": "xpath=//form//button[contains(.,'Sign in')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1001-08",
+          "comment": "Verify successful toast or redirection to admin dashboard",
+          "command": "waitForElementPresent",
+          "target": "xpath=//*[contains(text(),'Welcome back!') or contains(text(),'Dashboard')]",
+          "targets": [],
+          "value": "10000"
+        }
+      ]
+    },
+    {
+      "id": "c0000004-0000-4000-8000-000000000004",
+      "name": "TC04_Wrong_Password",
+      "commands": [
+        {
+          "id": "1004-01",
+          "comment": "Open sign-in modal directly",
+          "command": "open",
+          "target": "/?signin=true",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1004-02",
+          "comment": "Wait for modal to open",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1004-03",
+          "comment": "Click Continue with Email",
+          "command": "click",
+          "target": "xpath=//button[contains(.,'Continue with Email')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1004-04",
+          "comment": "Wait for email field",
+          "command": "waitForElementPresent",
+          "target": "xpath=//input[@type='email']",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "1004-05",
+          "comment": "Enter test email",
+          "command": "type",
+          "target": "xpath=//input[@type='email']",
+          "targets": [],
+          "value": "stqa_test_wrongpw@example.com"
+        },
+        {
+          "id": "1004-06",
+          "comment": "Enter wrong password",
+          "command": "type",
+          "target": "xpath=//input[@type='password']",
+          "targets": [],
+          "value": "WrongPassword999!"
+        },
+        {
+          "id": "1004-07",
+          "comment": "Click Sign in submit button",
+          "command": "click",
+          "target": "xpath=//form//button[contains(.,'Sign in')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1004-08",
+          "comment": "Assert error toast 'Invalid email or password' is shown",
+          "command": "waitForElementPresent",
+          "target": "xpath=//*[contains(text(),'Invalid email or password')]",
+          "targets": [],
+          "value": "10000"
+        }
+      ]
+    },
+    {
+      "id": "c0000005-0000-4000-8000-000000000005",
+      "name": "TC05_Wrong_Email",
+      "commands": [
+        {
+          "id": "1005-01",
+          "comment": "Open sign-in modal directly",
+          "command": "open",
+          "target": "/?signin=true",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1005-02",
+          "comment": "Wait for modal to open",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1005-03",
+          "comment": "Click Continue with Email",
+          "command": "click",
+          "target": "xpath=//button[contains(.,'Continue with Email')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1005-04",
+          "comment": "Wait for email field",
+          "command": "waitForElementPresent",
+          "target": "xpath=//input[@type='email']",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "1005-05",
+          "comment": "Enter unregistered dummy email",
+          "command": "type",
+          "target": "xpath=//input[@type='email']",
+          "targets": [],
+          "value": "nonexistent_stqa_user_404@example.com"
+        },
+        {
+          "id": "1005-06",
+          "comment": "Enter dummy password",
+          "command": "type",
+          "target": "xpath=//input[@type='password']",
+          "targets": [],
+          "value": "SomePassword123!"
+        },
+        {
+          "id": "1005-07",
+          "comment": "Click Sign in submit button",
+          "command": "click",
+          "target": "xpath=//form//button[contains(.,'Sign in')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1005-08",
+          "comment": "Assert error toast 'Invalid email or password' is shown",
+          "command": "waitForElementPresent",
+          "target": "xpath=//*[contains(text(),'Invalid email or password')]",
+          "targets": [],
+          "value": "10000"
+        }
+      ]
+    },
+    {
+      "id": "c0000006-0000-4000-8000-000000000006",
+      "name": "TC06_Empty_Login_Fields",
+      "commands": [
+        {
+          "id": "1006-01",
+          "comment": "Open sign-in modal directly",
+          "command": "open",
+          "target": "/?signin=true",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1006-02",
+          "comment": "Wait for modal to open",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1006-03",
+          "comment": "Click Continue with Email",
+          "command": "click",
+          "target": "xpath=//button[contains(.,'Continue with Email')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1006-04",
+          "comment": "Wait for email field",
+          "command": "waitForElementPresent",
+          "target": "xpath=//input[@type='email']",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "1006-05",
+          "comment": "Attempt to click Sign in without filling any fields",
+          "command": "click",
+          "target": "xpath=//form//button[contains(.,'Sign in')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1006-06",
+          "comment": "Assert that HTML5 required attribute retains modal focus and invalid pseudo-class",
+          "command": "assertElementPresent",
+          "target": "css=input[type='email']:invalid",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "c0000012-0000-4000-8000-000000000012",
+      "name": "TC12_Password_Mismatch",
+      "commands": [
+        {
+          "id": "1012-01",
+          "comment": "Open sign-up modal directly",
+          "command": "open",
+          "target": "/?signup=true",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1012-02",
+          "comment": "Wait for modal to appear",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1012-03",
+          "comment": "Click Sign up with Email",
+          "command": "click",
+          "target": "xpath=//button[contains(.,'Sign up with Email')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1012-04",
+          "comment": "Fill Company Name",
+          "command": "type",
+          "target": "xpath=//input[@placeholder='Acme Technologies']",
+          "targets": [],
+          "value": "STQA Quality Testing Ltd"
+        },
+        {
+          "id": "1012-05",
+          "comment": "Fill User Name",
+          "command": "type",
+          "target": "xpath=//input[@placeholder='Full name']",
+          "targets": [],
+          "value": "Tester Admin"
+        },
+        {
+          "id": "1012-06",
+          "comment": "Fill Work Email",
+          "command": "type",
+          "target": "xpath=//input[@placeholder='you@company.com']",
+          "targets": [],
+          "value": "tester@stqaquality.io"
+        },
+        {
+          "id": "1012-07",
+          "comment": "Fill Password",
+          "command": "type",
+          "target": "xpath=//input[@placeholder='Min 8 characters']",
+          "targets": [],
+          "value": "Password123!"
+        },
+        {
+          "id": "1012-08",
+          "comment": "Fill Mismatched Confirm Password",
+          "command": "type",
+          "target": "xpath=//input[@placeholder='Repeat password']",
+          "targets": [],
+          "value": "CompletelyDifferentPassword999!"
+        },
+        {
+          "id": "1012-09",
+          "comment": "Click Create Account button",
+          "command": "click",
+          "target": "xpath=//form//button[contains(.,'Create Account')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1012-10",
+          "comment": "Assert that client validation displays 'Passwords don't match' toast",
+          "command": "waitForElementPresent",
+          "target": "xpath=//*[contains(text(),\"Passwords don't match\")]",
+          "targets": [],
+          "value": "10000"
+        }
+      ]
+    },
+    {
+      "id": "c0000010-0000-4000-8000-000000000010",
+      "name": "TC10_Login_Page",
+      "commands": [
+        {
+          "id": "1010-01",
+          "comment": "Navigate to /login redirect path",
+          "command": "open",
+          "target": "/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1010-02",
+          "comment": "Wait for client redirect to open signin modal",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1010-03",
+          "comment": "Assert modal title is 'Sign in to InternHub'",
+          "command": "assertText",
+          "target": "id=auth-modal-title",
+          "targets": [],
+          "value": "Sign in to InternHub"
+        },
+        {
+          "id": "1010-04",
+          "comment": "Assert primary CTA button 'Continue with Email' is visible",
+          "command": "assertElementPresent",
+          "target": "xpath=//button[contains(.,'Continue with Email')]",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "c0000016-0000-4000-8000-000000000016",
+      "name": "TC16_Admin_Page_Without_Login",
+      "commands": [
+        {
+          "id": "1016-01",
+          "comment": "Attempt direct access to protected /admin dashboard as guest",
+          "command": "open",
+          "target": "/admin",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1016-02",
+          "comment": "Wait for middleware redirection to login modal",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1016-03",
+          "comment": "Assert that protected admin sidebar items are NOT present",
+          "command": "assertElementNotPresent",
+          "target": "xpath=//span[text()='Audit Log']",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "c0000019-0000-4000-8000-000000000019",
+      "name": "TC19_Role_Access_Restriction",
+      "commands": [
+        {
+          "id": "1019-01",
+          "comment": "Attempt direct access to /mentor as unauthenticated guest",
+          "command": "open",
+          "target": "/mentor",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1019-02",
+          "comment": "Wait for middleware interception to login modal",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1019-03",
+          "comment": "Attempt direct access to /intern as unauthenticated guest",
+          "command": "open",
+          "target": "/intern",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1019-04",
+          "comment": "Wait for middleware interception to login modal",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        }
+      ]
+    },
+    {
+      "id": "c0000022-0000-4000-8000-000000000022",
+      "name": "TC22_Logout",
+      "commands": [
+        {
+          "id": "1022-01",
+          "comment": "Open the application homepage",
+          "command": "open",
+          "target": "/",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1022-02",
+          "comment": "Assert navigation bar Sign in button is visible when not logged in",
+          "command": "waitForElementPresent",
+          "target": "xpath=//nav//button[contains(.,'Sign in')]",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1022-03",
+          "comment": "Verify that logging out (or unauthenticated state) redirects to /login",
+          "command": "open",
+          "target": "/api/auth/signout",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1022-04",
+          "comment": "Assert NextAuth signout confirmation or redirect to login",
+          "command": "waitForElementPresent",
+          "target": "xpath=//button[contains(.,'Sign out') or contains(.,'Sign in') or @type='submit']",
+          "targets": [],
+          "value": "10000"
+        }
+      ]
+    },
+    {
+      "id": "c0000023-0000-4000-8000-000000000023",
+      "name": "TC23_Batches_Page",
+      "commands": [
+        {
+          "id": "1023-01",
+          "comment": "Attempt direct navigation to protected Batches management URL",
+          "command": "open",
+          "target": "/admin/batches",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1023-02",
+          "comment": "Assert unauthenticated access redirects to login modal",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[@id='auth-modal-title']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "1023-03",
+          "comment": "Assert that protected batch creation buttons are NOT accessible without login",
+          "command": "assertElementNotPresent",
+          "target": "xpath=//button[contains(.,'+ New Batch')]",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "b1000000-0000-4000-8000-000000000001",
+      "name": "Suite 1 — Authentication and Validation",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "c0000001-0000-4000-8000-000000000001",
+        "c0000004-0000-4000-8000-000000000004",
+        "c0000005-0000-4000-8000-000000000005",
+        "c0000006-0000-4000-8000-000000000006",
+        "c0000012-0000-4000-8000-000000000012"
+      ]
+    },
+    {
+      "id": "b2000000-0000-4000-8000-000000000002",
+      "name": "Suite 2 — Navigation and Access Control",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "c0000010-0000-4000-8000-000000000010",
+        "c0000016-0000-4000-8000-000000000016",
+        "c0000019-0000-4000-8000-000000000019",
+        "c0000022-0000-4000-8000-000000000022",
+        "c0000023-0000-4000-8000-000000000023"
+      ]
+    }
+  ],
+  "urls": [
+    "https://intern-hub-blue.vercel.app/"
+  ],
+  "plugins": []
+}

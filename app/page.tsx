@@ -208,18 +208,18 @@ function AuthModal({ mode, onClose, onSuccess }: { mode: ModalMode; onClose: () 
 function Navbar({ onSignIn, onSignUp }: { onSignIn: () => void; onSignUp: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [dark, setDark] = useState(true);
+  const [themeReady, setThemeReady] = useState(false);
 
   useEffect(() => {
-    // Apply persisted theme
+    // Apply persisted theme only after mount to avoid hydration drift.
     try {
       const stored = localStorage.getItem("internhub-theme");
-      if (stored === "light") {
-        setDark(false);
-        document.documentElement.setAttribute("data-theme", "light");
-      } else {
-        document.documentElement.setAttribute("data-theme", "dark");
-      }
+      const isLight = stored === "light";
+      setDark(!isLight);
+      document.documentElement.setAttribute("data-theme", isLight ? "light" : "dark");
     } catch {}
+    setThemeReady(true);
+
     const h = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
@@ -416,8 +416,13 @@ function HomePageContent() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [modal, setModal] = useState<ModalMode>(null);
+  const [mounted, setMounted] = useState(false);
 
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Open modal if redirected from /login or /register
   useEffect(() => {
@@ -441,7 +446,7 @@ function HomePageContent() {
     router.refresh();
   }
 
-  if (status === "loading") return null;
+  if (!mounted || status === "loading") return null;
 
   const features = [
     { icon: ClipboardList, color: "var(--accent)", title: "Proof-Based Task Management", desc: "Interns submit tasks with mandatory GitHub links, deployed URLs, or documents. No more 'I did the work' without evidence.", bg: "var(--accent-10)" },

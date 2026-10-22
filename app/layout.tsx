@@ -27,13 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ` }} />
         <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
       </head>
-      <body>
-        <script dangerouslySetInnerHTML={{ __html: `
-          try {
-            var t = localStorage.getItem('internhub-theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', t);
-          } catch(e) {}
-        `}} />
+      <body suppressHydrationWarning>
         <a href="#main" className="skip-nav">Skip to main content</a>
         <Providers>
           {children}
